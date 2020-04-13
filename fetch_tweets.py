@@ -132,10 +132,10 @@ def fetch_tweets(
 if __name__ == "__main__":
 
     #Twitter Developer keys here
-    consumer_key = 'TNGWkCawmMuagFbwVPIyHLtG9'
-    consumer_key_secret = 'OlsaM7gIqyNx5CVvcLIZl94HEKaqFfO8vSsK8GpbFN94klhj7Y'
-    access_token = '64504545-BnAbV1rakijSvTKT9MZRu8Vv9AVKdfdYNZWqqnHRM'
-    access_token_secret = 'ihgPozL7gFiO2R26HHUDsm4RYdGvL83j1mDDnmqLOO3hZ'
+    consumer_key = ''
+    consumer_key_secret = ''
+    access_token = ''
+    access_token_secret = ''
 
     # Connect with database that stores tweets
     db, cursor = db_connect('data/tweetsDB.db')
@@ -152,17 +152,20 @@ if __name__ == "__main__":
     )
 
     query = '''
-            #Nubank 
-            OR Nubank 
-            OR @NuConta 
-            OR #fintech 
-            OR contadigital -filter:retweets
-            '''
+           COVID19
+           OR pandemic
+        '''
+
     tweetCount = 0 
     max_tweets = 100000
 
     #Fetch tweets    
-    c = fetch_tweets(api, query, use_since_id=False)
+    c = fetch_tweets(
+        api, 
+        query, 
+         max_tweets = 100000,
+        use_since_id=False)
+        
     while True:
         try:
             tweet = c.next()
